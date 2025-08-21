@@ -1,30 +1,25 @@
 import numpy as np
 
-# Directions:
+#Directions:
 # accept a starting value, and the function, , to optimize
-# implement the iterative algorithm
-# implement the stopping criterion (feel free to keep this simple)
-# calculate the first and second derivatives using a basic finite difference approach to estimating the derivative based on the definition of a derivative as a limit
-# note that the second derivative can be seen as calling the first derivative twice…
+#implement the iterative algorithm
+#implement the stopping criterion (feel free to keep this simple)
+#calculate the first and second derivatives using a basic finite difference approach to estimating the derivative based on the definition of a derivative as a limit
+#note that the second derivative can be seen as calling the first derivative twice…
 
-
-def first_derivative(func, x):
+def first_derivative(func, x, eps = 1e-8):
     """Return the first derivate of a given function"""
-    return (func(x + np.finfo(float).eps) - func(x)) / np.finfo(float).eps
+    return (func(x + eps) - func(x))/ eps
 
-
-def second_derivative(first, x):
+def second_derivative(func, x, eps = 1e-5):
     """Return the second derivate of a given function based on the provided first derivative"""
-    return (first(x + np.finfo(float).eps) - first(x)) / np.finfo(float).eps
+    return (first_derivative(f, x+eps, eps) - first_derivative(f, x, eps))/ eps
 
-
-def newtonsMethod(start, fx, end):
+def newtonsMethod(start, fx, end = 1e-4):
     """Implement Newton's Method for optimization."""
-    t = start
-    for i in range(start, end):
-        first_der = first_derivative(fx, t - 1)
-        second_der = second_derivative(first_der, t - 1)
-        xt = (t - 1) - first_der / second_der
-        t += 1
-        if abs(xt - t) < np.finfo(float).eps:
-            return t
+    start_new = start - first_derivative(fx, start) / seconda_derivative(fx, start)
+    t = start_new
+    while abs(start_new - t) < end:
+        xt = start_new
+        start_new = xt - first_derivative(fx, xt) / seconda_derivative(fx, xt)
+    return x_new, f(start_new)
