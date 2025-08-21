@@ -7,7 +7,7 @@ import numpy as np
 #calculate the first and second derivatives using a basic finite difference approach to estimating the derivative based on the definition of a derivative as a limit
 #note that the second derivative can be seen as calling the first derivative twice…
 
-def first_derivative(func, x, eps = 1e-8):
+def first_derivative(func, x, eps = 1e-6):
     """Return the first derivate of a given function"""
     return (func(x + eps) - func(x))/ eps
 
