@@ -17,9 +17,9 @@ def second_derivative(func, x, eps = 1e-5):
 
 def newtonsMethod(start, fx, end = 1e-4):
     """Implement Newton's Method for optimization."""
-    start_new = start - first_derivative(fx, start) / seconda_derivative(fx, start)
+    start_new = start - first_derivative(fx, start) / second_derivative(fx, start)
     t = start_new
     while abs(start_new - t) < end:
         xt = start_new
-        start_new = xt - first_derivative(fx, xt) / seconda_derivative(fx, xt)
+        start_new = xt - first_derivative(fx, xt) / second_derivative(fx, xt)
     return x_new, fx(start_new)
