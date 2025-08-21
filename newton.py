@@ -22,4 +22,4 @@ def newtonsMethod(start, fx, end = 1e-4):
     while abs(start_new - t) < end:
         xt = start_new
         start_new = xt - first_derivative(fx, xt) / second_derivative(fx, xt)
-    return x_new, fx(start_new)
+    return start_new, fx(start_new)
